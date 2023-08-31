@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./App.css";
-import Login from "./Components/Auth/Login";
 import { tokenListener } from "./helpers/firebase";
+import Signup from "./Components/Auth/SignUp";
 
 function App() {
   useEffect(() => {
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <Login />
+      <Signup />
     </>
   );
 }
