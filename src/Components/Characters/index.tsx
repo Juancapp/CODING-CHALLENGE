@@ -3,17 +3,32 @@ import styles from "./characters.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../Shared/Card";
+import { useAppSelector } from "../../redux/store";
+
+enum Filters {
+  name = "name",
+  planet = "planet",
+  gender = "gender",
+}
 
 const Characters = () => {
   const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
   const [page, setPage] = useState(1);
+  const [filter, setFilter] = useState(Filters.name);
+
+  const token = useAppSelector((state) => state.auth?.authUser?.token);
+
+  const headers = {
+    token: token,
+  };
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/characters/name/${page}`
+          `${import.meta.env.VITE_API_URL}/characters/${filter}/${page}`,
+          { headers }
         );
         setCharacters(response?.data?.data);
       } catch (error) {
@@ -21,7 +36,7 @@ const Characters = () => {
       }
     }
     fetchData();
-  }, [page]);
+  }, [page, filter]);
 
   const handleChangePage = (number: 1 | -1) => {
     if (number === -1 && page > 1) setPage(page + number);
@@ -32,24 +47,34 @@ const Characters = () => {
     navigate(path);
   };
 
+  const handleFilter = (filter: Filters) => {
+    setFilter(filter);
+  };
+
   return (
-    <div className={styles.charactersContainer}>
+    <>
       <p
         className={styles.favChar}
         onClick={() => handleNavigate("../favchar")}
       >
         Favorite Characters
       </p>
+      <div className={styles.topButtonsContainer}>
+        Sort alphabetically by:
+        <button onClick={() => handleFilter(Filters.name)}>Name</button>
+        <button onClick={() => handleFilter(Filters.gender)}>Gender</button>
+        <button onClick={() => handleFilter(Filters.planet)}>Planet</button>
+      </div>
       <div className={styles.characters}>
         {characters?.map((character) => {
           return <Card data={character} />;
         })}
       </div>
       <div className={styles.buttonsContainer}>
-        <button onClick={() => handleChangePage(-1)}>Página anterior</button>
-        <button onClick={() => handleChangePage(1)}>Página siguiente</button>
+        <button onClick={() => handleChangePage(-1)}>Previous page</button>
+        <button onClick={() => handleChangePage(1)}>Next page</button>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -6,6 +6,7 @@ import { schemaSignup } from "./validations";
 import Input from "../../Shared/Input";
 import { AppDispatch } from "../../../redux/types";
 import { useNavigate } from "react-router-dom";
+import styles from "./signup.module.css";
 
 interface FormData {
   nick: string;
@@ -41,7 +42,8 @@ const Signup = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <h1>Register</h1>
       <Input<FormData>
         name="nick"
         title="nick"
@@ -68,10 +70,12 @@ const Signup = () => {
         register={register}
         error={errors.repeatPassword?.message}
       />
-      <button type="button" onClick={() => handleNavigate("../home")}>
-        Go to Home
-      </button>
-      <button type="submit">Submit</button>
+      <span>
+        <button type="button" onClick={() => handleNavigate("../home")}>
+          Go to Home
+        </button>
+        <button type="submit">Submit</button>
+      </span>
     </form>
   );
 };

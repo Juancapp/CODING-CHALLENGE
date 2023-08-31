@@ -37,7 +37,8 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <h1>Login</h1>
         <Input<FormData>
           name="email"
           title="Email"
@@ -52,16 +53,16 @@ const Login: React.FC = () => {
           error={errors.password?.message}
         />
         <button type="submit">Submit</button>
-      </form>
-      <span>
-        ¿No tiene usuario?
-        <span
-          className={styles.goToRegister}
-          onClick={() => handleNavigate("../signup")}
-        >
-          Regístrese aquí
+        <span>
+          Don't have a user yet?
+          <span
+            className={styles.goToRegister}
+            onClick={() => handleNavigate("../signup")}
+          >
+            Register here
+          </span>
         </span>
-      </span>
+      </form>
     </>
   );
 };
