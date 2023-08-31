@@ -19,11 +19,11 @@ const Characters = () => {
 
   const token = useAppSelector((state) => state.auth?.authUser?.token);
 
-  const headers = {
-    token: token,
-  };
-
   useEffect(() => {
+    const headers = {
+      token: token,
+    };
+
     async function fetchData() {
       try {
         const response = await axios.get(
@@ -36,7 +36,7 @@ const Characters = () => {
       }
     }
     fetchData();
-  }, [page, filter]);
+  }, [page, filter, token]);
 
   const handleChangePage = (number: 1 | -1) => {
     if (number === -1 && page > 1) setPage(page + number);
