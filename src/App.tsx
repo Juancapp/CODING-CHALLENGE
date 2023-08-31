@@ -1,18 +1,8 @@
-import { useEffect } from "react";
 import "./App.css";
-import { tokenListener } from "./helpers/firebase";
-import Signup from "./Components/Auth/SignUp";
+import Layout from "./Components/Layout";
 
 function App() {
-  useEffect(() => {
-    tokenListener();
-  }, []);
-
-  return (
-    <>
-      <Signup />
-    </>
-  );
+  return <Layout />;
 }
 
 export default App;

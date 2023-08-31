@@ -10,7 +10,6 @@ export const register = (data: {
 }) => {
   return async (dispatch: Dispatch) => {
     try {
-      console.log(data);
       dispatch(registerPending());
       const response = await axios.post(`${url}/user`, data);
       dispatch(registerSuccess(response.data));
