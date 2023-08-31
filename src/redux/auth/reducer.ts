@@ -13,7 +13,7 @@ const initialState: State = {
 };
 
 const authReducer: Reducer<State, ActionsType> = (
-  state = initialState,
+  state = { ...initialState },
   action
 ): State => {
   switch (action.type) {

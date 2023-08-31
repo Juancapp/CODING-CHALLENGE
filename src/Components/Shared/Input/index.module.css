@@ -1,0 +1,37 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  font-size: 0.8rem;
+  color: #ae67fa;
+  margin-top: 10px;
+}
+
+.label input {
+  position: relative;
+  align-self: stretch;
+  padding: 9px 8px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-bottom: solid #ae67fa 1px;
+}
+
+.label input:focus {
+  outline: none !important;
+  background-color: rgba(85, 85, 85, 0.356);
+  transition: 0.2s;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.label p {
+  color: #b00058;
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+.inputRed {
+  border-bottom: 1px solid #b00058 !important;
+}

@@ -16,13 +16,15 @@ export const login = (data: { email: string; password: string }) => {
       );
       const { token } = await userCredentials.user.getIdTokenResult();
       dispatch(loginSuccess({ token: token }));
+      alert("Login Success");
     } catch (error: unknown) {
+      alert("Login Error");
       return dispatch(loginError(error as string));
     }
   };
 };
 
-export const l = () => {
+export const logout = () => {
   return async (dispatch: Dispatch) => {
     try {
       await signOut(auth);
