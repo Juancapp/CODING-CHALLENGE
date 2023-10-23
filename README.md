@@ -2,7 +2,7 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Back-end repositorie link: https://github.com/Juancapp/rick-backend
+## Back-end repository link: https://github.com/Juancapp/rick-backend
 
 Currently, two official plugins are available:
 
